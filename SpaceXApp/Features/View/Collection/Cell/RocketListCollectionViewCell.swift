@@ -17,6 +17,8 @@ class RocketListCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var yearLabel: UILabel!
     @IBOutlet weak var rocketNameLabel: UILabel!
     
+    // MARK: LifeCycle
+    
         override func awakeFromNib() {
             super.awakeFromNib()
             layer.cornerRadius  = 10
@@ -30,14 +32,14 @@ class RocketListCollectionViewCell: UICollectionViewCell {
         setupUI()
     }
     
+    //MARK: UI Functions
+    
     private func setupUI() {
         rocketImage.frame = CGRect(x: 0, y: 0, width: contentView.frame.size.width / 2 , height: contentView.frame.size.height  )
         nameLabel.frame = CGRect(x: rocketImage.frame.width + 50, y:0, width: rocketImage.frame.width / 2 ,height: rocketImage.frame.height / 2)
         rocketNameLabel.frame = CGRect(x: rocketImage.frame.width + 50, y:50, width:  rocketImage.frame.width / 2 ,height: rocketImage.frame.height / 2 )
         yearLabel.frame = CGRect(x: rocketImage.frame.width + 50, y:100, width: rocketImage.frame.width / 2 ,height: rocketImage.frame.height / 2)
     }
-        
-    //MARK: UI Functions
         
     func configure (with name: String, with image:String, with year:String, with rocketName: String) {
             nameLabel.text = name

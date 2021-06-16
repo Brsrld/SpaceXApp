@@ -19,13 +19,15 @@ class RocketDetailViewController: UIViewController {
     
     var rockets:RocketModels?
     
-    //MARK: Functions
+    // MARK: LifeCycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setupContent()
         title = Constants.rocketDetailViewControllerTitle
     }
+    
+    //MARK: Functions
     
     func setupContent() {
         nameLabel.text = "Rocket Name: \(rockets?.rocket.rocket_name ?? Constants.nilValue)"

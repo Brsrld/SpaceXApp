@@ -13,11 +13,12 @@ class RocketListViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
 
-    private var rockets: [RocketModels]? = []
-    private var sortedLaunchList: [RocketModels] = []
+    private var rockets: [RocketModels] = []
     
-    private let rocketListViewModel: RocketListViewModel = RocketListViewModel()
+    private var rocketListViewModel: RocketListViewModel = RocketListViewModel()
     private let rocketListCollecionView: RocketListCollecionView = RocketListCollecionView()
+    
+    // MARK: LifeCycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,24 +38,23 @@ class RocketListViewController: UIViewController {
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
                let sortDesc = UIAlertAction(title: "Sort By Year Descending", style: .default, handler: { [weak self] _  in
                    guard let self = self else { return }
-            
-                self.rockets?.sort(by: { (first, second) -> Bool in
-                    if let rocket1 = first.launch_year, let rocket2 = second.launch_year {
-                        return rocket1 < rocket2
-                    }
-                    return false
-                })
+                
+                let sorted = self.rockets.sorted { (first, second) -> Bool in
+                    Int(first.launch_year!) ?? 0 < Int(second.launch_year!) ?? 0
+                }
+                self.rocketListCollecionView.update(items: sorted)
+                self.collectionView.reloadData()
+                
             })
         
         let sortAsc =  UIAlertAction(title: "Sort By Year Ascending", style: .default, handler: { [weak self] _  in
             guard let self = self else { return }
             
-            self.rockets?.sort(by: { (first, second) -> Bool in
-                if let rocket1 = first.launch_year, let rocket2 = second.launch_year {
-                    return rocket1 > rocket2
-                }
-                return false
-            })
+            let sorted = self.rockets.sorted { (first, second) -> Bool in
+                Int(first.launch_year!) ?? 0 > Int(second.launch_year!) ?? 0
+            }
+            self.rocketListCollecionView.update(items: sorted)
+            self.collectionView.reloadData()
         })
         
         let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
@@ -74,6 +74,7 @@ class RocketListViewController: UIViewController {
     
     private func service() {
         rocketListViewModel.service { models in
+            self.rockets = models
             self.rocketListCollecionView.update(items: models)
             self.collectionView.reloadData()
         } onFail: { error in
