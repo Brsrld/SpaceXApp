@@ -2,7 +2,7 @@
 
 I tried to use MVVM architecture design pattern in this app.
 Also I used cocoapods dependency manager. 
-I downloaded images with kingfisher framework.
+I used alamofire to fetch data from api.I downloaded images with kingfisher framework.
 
 A music for you when examine to project : https://www.youtube.com/watch?v=LpusSb6d08o
 
