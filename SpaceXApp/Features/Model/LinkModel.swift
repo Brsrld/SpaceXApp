@@ -7,6 +7,9 @@
 
 import Foundation
 
+//MARK: Link Model
+
 struct RocketLink: Codable {
     let mission_patch: String?
+    let mission_patch_small: String?
 }

@@ -173,8 +173,8 @@
 		5567DA3B26792ADF00190563 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				550A89A12679457E00EC1806 /* Collection */,
 				5567DA2926792A2E00190563 /* Main.storyboard */,
+				550A89A12679457E00EC1806 /* Collection */,
 				5567DA3D26792AEB00190563 /* Model */,
 				5567DA3C26792AE400190563 /* Controller */,
 			);

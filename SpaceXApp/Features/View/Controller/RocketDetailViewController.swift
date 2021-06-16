@@ -8,6 +8,9 @@
 import UIKit
 
 class RocketDetailViewController: UIViewController {
+    
+    //MARK: Variables
+    
     @IBOutlet weak var rocketImage: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var missionName: UILabel!
@@ -15,6 +18,8 @@ class RocketDetailViewController: UIViewController {
     @IBOutlet weak var yearLabel: UILabel!
     
     var rockets:RocketModels?
+    
+    //MARK: Functions
     
     override func viewDidLoad() {
         super.viewDidLoad()

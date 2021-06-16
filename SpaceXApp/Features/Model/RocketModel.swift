@@ -7,6 +7,8 @@
 
 import Foundation
 
+//MARK: Rocket Model
+
 struct Rocket: Codable {
     let rocket_name: String?
 }

@@ -9,13 +9,16 @@ import UIKit
 
 class RocketListViewController: UIViewController {
     
-    @IBOutlet weak var collectionView: UICollectionView!
+    //MARK: Variables
     
-    private var launchList: [RocketModels] = []
+    @IBOutlet weak var collectionView: UICollectionView!
+
+    private var rockets: [RocketModels]? = []
     private var sortedLaunchList: [RocketModels] = []
     
     private let rocketListViewModel: RocketListViewModel = RocketListViewModel()
     private let rocketListCollecionView: RocketListCollecionView = RocketListCollecionView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         service()
@@ -29,27 +32,29 @@ class RocketListViewController: UIViewController {
     func setupUI() {
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Sort", style: .done, target: self, action: #selector(sort))
     }
-    
+        
     @objc func sort() {
         let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
                let sortDesc = UIAlertAction(title: "Sort By Year Descending", style: .default, handler: { [weak self] _  in
                    guard let self = self else { return }
-                   
-                   let sorted = self.launchList.sorted { (first, second) -> Bool in
-                    Int(first.launch_year ?? "") ?? 0 > Int(second.launch_year ?? "") ??  0
-                   }
-                   self.sortedLaunchList = sorted
-                   self.collectionView.reloadData()
-               })
+            
+                self.rockets?.sort(by: { (first, second) -> Bool in
+                    if let rocket1 = first.launch_year, let rocket2 = second.launch_year {
+                        return rocket1 < rocket2
+                    }
+                    return false
+                })
+            })
         
         let sortAsc =  UIAlertAction(title: "Sort By Year Ascending", style: .default, handler: { [weak self] _  in
             guard let self = self else { return }
             
-            let sorted = self.launchList.sorted { (first, second) -> Bool in
-                Int(first.launch_year ?? "") ?? 0 < Int(second.launch_year ?? "") ??  0
-            }
-            self.sortedLaunchList = sorted
-            self.collectionView.reloadData()
+            self.rockets?.sort(by: { (first, second) -> Bool in
+                if let rocket1 = first.launch_year, let rocket2 = second.launch_year {
+                    return rocket1 > rocket2
+                }
+                return false
+            })
         })
         
         let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
@@ -76,6 +81,8 @@ class RocketListViewController: UIViewController {
         }
     }
 }
+
+//MARK: Extensions
 
 extension RocketListViewController:RocketListCollecionViewOutput {
     func getNavCont() -> UINavigationController? {

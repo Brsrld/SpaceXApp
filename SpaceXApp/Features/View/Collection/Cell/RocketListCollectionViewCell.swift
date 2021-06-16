@@ -24,6 +24,18 @@ class RocketListCollectionViewCell: UICollectionViewCell {
             layer.shadowOpacity = 1
             layer.shadowOffset = CGSize(width: 1, height: 1)
         }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        setupUI()
+    }
+    
+    private func setupUI() {
+        rocketImage.frame = CGRect(x: 0, y: 0, width: contentView.frame.size.width / 2 , height: contentView.frame.size.height  )
+        nameLabel.frame = CGRect(x: rocketImage.frame.width + 50, y:0, width: rocketImage.frame.width / 2 ,height: rocketImage.frame.height / 2)
+        rocketNameLabel.frame = CGRect(x: rocketImage.frame.width + 50, y:50, width:  rocketImage.frame.width / 2 ,height: rocketImage.frame.height / 2 )
+        yearLabel.frame = CGRect(x: rocketImage.frame.width + 50, y:100, width: rocketImage.frame.width / 2 ,height: rocketImage.frame.height / 2)
+    }
         
     //MARK: UI Functions
         

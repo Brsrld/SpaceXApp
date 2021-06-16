@@ -35,7 +35,7 @@ final class RocketListCollecionView: NSObject{
         var cell = UICollectionViewCell()
         
         if let dataCell = collectionView.dequeueReusableCell(withReuseIdentifier: Constants.cellIdentifier, for: indexPath) as? RocketListCollectionViewCell {
-            dataCell.configure(with: items[indexPath.row].mission_name ?? Constants.nilValue, with: items[indexPath.row].links.mission_patch ?? Constants.nilValue, with: items[indexPath.row].launch_year ?? Constants.nilValue, with: items[indexPath.row].rocket.rocket_name ?? Constants.nilValue)
+            dataCell.configure(with: items[indexPath.row].mission_name ?? Constants.nilValue, with: items[indexPath.row].links.mission_patch_small ?? Constants.nilValue, with: items[indexPath.row].launch_year ?? Constants.nilValue, with: items[indexPath.row].rocket.rocket_name ?? Constants.nilValue)
             cell = dataCell
         }
         return cell
@@ -48,7 +48,6 @@ final class RocketListCollecionView: NSObject{
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        
         let columns: CGFloat = 1.05
         let collectionViewWidth = collectionView.bounds.width
         let flowLayout = collectionViewLayout as! UICollectionViewFlowLayout

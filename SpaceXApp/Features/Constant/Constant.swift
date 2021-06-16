@@ -7,6 +7,8 @@
 
 import Foundation
 
+//MARK: Constant
+
 struct Constants {
     static let apiUrl = "https://api.spacexdata.com/v2/launches"
     static let cellIdentifier = "Cell"
@@ -14,4 +16,5 @@ struct Constants {
     static let rocketDetailViewControllerID = "RocketDetailViewController"
     static let rocketListViewControllerTitle = "Launches"
     static let rocketDetailViewControllerTitle = "Detail"
+    static let errorMessage = "Error Occured"
 }

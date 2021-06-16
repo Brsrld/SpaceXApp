@@ -7,6 +7,8 @@
 
 import Foundation
 
+//MARK: General Model
+
 struct RocketModels: Codable {
     let mission_name: String?
     let launch_year: String?

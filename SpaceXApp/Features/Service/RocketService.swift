@@ -8,6 +8,8 @@
 import Foundation
 import Alamofire
 
+//MARK: Protocol
+
 protocol RocketServiceProtocol {
     func fethAllPosts(onSuccess: @escaping ([RocketModels]) -> Void, onFail: @escaping (String?) -> Void)
 }
