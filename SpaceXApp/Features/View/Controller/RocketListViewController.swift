@@ -11,6 +11,9 @@ class RocketListViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
+    private var launchList: [RocketModels] = []
+    private var sortedLaunchList: [RocketModels] = []
+    
     private let rocketListViewModel: RocketListViewModel = RocketListViewModel()
     private let rocketListCollecionView: RocketListCollecionView = RocketListCollecionView()
     override func viewDidLoad() {
@@ -28,9 +31,36 @@ class RocketListViewController: UIViewController {
     }
     
     @objc func sort() {
-      
+        let actionSheet = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+               let sortDesc = UIAlertAction(title: "Sort By Year Descending", style: .default, handler: { [weak self] _  in
+                   guard let self = self else { return }
+                   
+                   let sorted = self.launchList.sorted { (first, second) -> Bool in
+                    Int(first.launch_year ?? "") ?? 0 > Int(second.launch_year ?? "") ??  0
+                   }
+                   self.sortedLaunchList = sorted
+                   self.collectionView.reloadData()
+               })
+        
+        let sortAsc =  UIAlertAction(title: "Sort By Year Ascending", style: .default, handler: { [weak self] _  in
+            guard let self = self else { return }
+            
+            let sorted = self.launchList.sorted { (first, second) -> Bool in
+                Int(first.launch_year ?? "") ?? 0 < Int(second.launch_year ?? "") ??  0
+            }
+            self.sortedLaunchList = sorted
+            self.collectionView.reloadData()
+        })
+        
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        actionSheet.addAction(sortDesc)
+        actionSheet.addAction(sortAsc)
+        actionSheet.addAction(cancel)
+        
+        present(actionSheet, animated: true)
     }
-    
+
     private func initDelegate() {
         collectionView.delegate = rocketListCollecionView
         collectionView.dataSource = rocketListCollecionView

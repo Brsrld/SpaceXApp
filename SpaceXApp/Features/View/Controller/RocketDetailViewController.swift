@@ -19,13 +19,14 @@ class RocketDetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupContent()
+        title = Constants.rocketDetailViewControllerTitle
     }
     
     func setupContent() {
-        nameLabel.text = rockets?.rocket.rocket_name
-        missionName.text = rockets?.mission_name
+        nameLabel.text = "Rocket Name: \(rockets?.rocket.rocket_name ?? Constants.nilValue)"
+        missionName.text = "Mission Name: \(rockets?.mission_name ?? Constants.nilValue)"
         detailLabel.text = rockets?.details
-        yearLabel.text = rockets?.launch_year
+        yearLabel.text = "Launch Year: \(rockets?.launch_year ?? Constants.nilValue)"
         rocketImage.kf.setImage(with: URL(string: rockets?.links.mission_patch ?? Constants.nilValue))
     }
 }

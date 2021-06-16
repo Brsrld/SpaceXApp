@@ -13,4 +13,5 @@ struct Constants {
     static let nilValue = ""
     static let rocketDetailViewControllerID = "RocketDetailViewController"
     static let rocketListViewControllerTitle = "Launches"
+    static let rocketDetailViewControllerTitle = "Detail"
 }
